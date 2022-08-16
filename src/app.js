@@ -29,7 +29,7 @@ app.use((err, req, res, next) => {
     res.status(500).sendFile(path.join(__dirname, "..", 'public', 'errors', '500.html'));
 });
 
-app.listen(3000, () => {
+app.listen(app.get('port'), () => {
     console.log(`Listening to port ${app.get('port')}`);
 })
 
