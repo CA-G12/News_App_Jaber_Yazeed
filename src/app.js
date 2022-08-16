@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(indexRouter);
 
 
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "..", 'public', 'index.html'))
 });
@@ -33,3 +32,5 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
     console.log(`Listening to port ${app.get('port')}`);
 })
+
+module.exports = app;
