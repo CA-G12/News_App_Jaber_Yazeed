@@ -1,16 +1,22 @@
+const { addFavs, deleteFav, getFavs, getNews, getSources } = require("./controllers/index");
 
-const indexRouter = require('./controllers/index');
-const routs = require('./Sattics')
+const routs = require("./Sattics");
 
-const router = require('express').Router();
+const router = require("express").Router();
+
+router.get("/sources", getSources);
+router.get("/news", getNews);
 
 /**
  * @param {String} UserName
  * @return {Response(News[])}
  */
-router.get(routs.getFavs, (req, res, next) => {
-    try { indexRouter.getFavs(req, res) }
-    catch { res.status(500).send() }
+router.get(routs.getFavs, (req, res) => {
+  try {
+    getFavs(req, res);
+  } catch {
+    res.status(500).send();
+  }
 });
 
 /**
@@ -19,10 +25,12 @@ Add To Favs
 * @param {String} UserName
 * @return {Response} 
 */
-router.post(routs.addFav, (req, res, next) => {
-    try {
-        indexRouter.addFavs(req, res)
-    } catch { res.status(500).send() }
+router.post(routs.addFav, (req, res) => {
+  try {
+    addFavs(req, res);
+  } catch {
+    res.status(500).send();
+  }
 });
 
 /**
@@ -31,21 +39,12 @@ Add To Favs
 * @param {String} UserName
 * @return {Response} 
 */
-router.delete(routs.deleteFav, (req, res, next) => {
-    try {
-        indexRouter.deleteFav(req, res)
-    } catch { res.status(500).send() }
+router.delete(routs.deleteFav, (req, res) => {
+  try {
+    deleteFav(req, res);
+  } catch {
+    res.status(500).send();
+  }
 });
-
-router.get('/sources', (req, res, next) => {
-    indexRouter.getSources(req, res, next)
-})
-router.post('/search/', (req, res, next) => {
-    indexRouter.search(req, res, next)
-})
-router.get(/search/, (req, res, next) => {
-    indexRouter.getSsearch(req, res, next)
-})
-
 
 module.exports = router;
