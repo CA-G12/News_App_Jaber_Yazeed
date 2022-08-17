@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-
 const filePath = path.join(__dirname, '..', 'Data', 'favs.json')
 
 
@@ -30,7 +29,7 @@ const writeData = (fileData) => {
     })
 }
 
-const addFavs = (req, res) => {
+const addFavs = (req, res, next) => {
     const username = req.body.username;
     const id = req.body.newsid;
 
@@ -45,7 +44,7 @@ const addFavs = (req, res) => {
     })
 }
 
-const deleteFav = (req, res) => {
+const deleteFav = (req, res, next) => {
     const username = req.params.username;
     const id = req.params.favid;
     fs.readFile(filePath, 'utf-8', (err, data) => {
@@ -64,7 +63,7 @@ const deleteFav = (req, res) => {
     })
 }
 
-const getFavs = (req, res) => {
+const getFavs = (req, res, next) => {
     const username = req.params.username;
     fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err)
@@ -74,10 +73,6 @@ const getFavs = (req, res) => {
         }
     })
 }
-
-
-
-
 
 
 module.exports = {
