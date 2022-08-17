@@ -1,7 +1,7 @@
 const { addFavs, deleteFav, getFavs } = require('./favs')
-const newsRouter = require('./news');
+const { getSources, search, getSsearch } = require('./news');
 
 
 module.exports = {
-    addFavs, deleteFav, getFavs, newsRouter
+    addFavs, deleteFav, getFavs, getSources, search, getSsearch
 }

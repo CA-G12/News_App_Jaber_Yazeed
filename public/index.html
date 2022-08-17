@@ -6,10 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/popUp.css">
 </head>
 
 <body>
-    <h1>Hello World</h1>
+    <!-- Globals Structures  -->
+
+    <!-- Spinner Layout  -->
+    <div id="spinner">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Modal  -->
+    <section class="upmodal">
+        <div class="modal">
+            <button id="btnClose"><i style="color: white;" class="fa-solid fa-xmark"></i></button>
+            <img class="modal-img" src="./public/images/notFound.webp" alt="">
+            <div class="modal-content">
+                <h1 class="modal-title">Book Title</h1>
+                <h3 class="modal-author">Book Author</h3>
+                <p class="modal-description"><b>Description:</b> <span></span></p>
+                <div class="modal-date"><b>Date:</b> <span></span></div>
+            </div>
+        </div>
+    </section>
+
+
+    /*Paste Your Code*/
+
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

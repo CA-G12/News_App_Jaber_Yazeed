@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const fetch = require('node-fetch');
 const app = express();
 require('dotenv').config();
 const router = require('./router')
@@ -11,7 +10,7 @@ app.use(express.urlencoded());
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use(indexRouter);
+app.use(router);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "..", 'public', 'index.html'))
