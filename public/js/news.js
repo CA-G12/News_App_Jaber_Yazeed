@@ -63,6 +63,7 @@ function displayChannel(channel) {
 }
 
 function displayNews(newsObj) {
+
   const newsItemDiv = document.createElement("div");
   newsItemDiv.className = "news-item";
 
@@ -106,3 +107,15 @@ function displayNews(newsObj) {
 
   newsSection.appendChild(newsItemDiv);
 }
+
+searchBtn.addEventListener('click', (e) => {
+  fetch(`/news/?search=${search.value}&sources=al-jazeera-english&language=en`)
+    .then((response) =>
+      response.json().then((data) => {
+        newsSection.innerHTML = '';
+        data["articles"].forEach((article) => {
+          displayNews(article);
+        });
+      })
+    );
+});
