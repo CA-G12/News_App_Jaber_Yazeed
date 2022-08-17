@@ -11,12 +11,11 @@ app.use(express.urlencoded());
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+app.use(indexRouter);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "..", 'public', 'index.html'))
 });
-
-app.use(router);
 
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, "..", 'public', 'errors', '404.html'));
@@ -26,6 +25,8 @@ app.use((err, req, res, next) => {
     res.status(500).sendFile(path.join(__dirname, "..", 'public', 'errors', '500.html'));
 });
 
-app.listen(3000, () => {
+app.listen(app.get('port'), () => {
     console.log(`Listening to port ${app.get('port')}`);
 })
+
+module.exports = app;
