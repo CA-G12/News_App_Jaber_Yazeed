@@ -119,3 +119,22 @@ searchBtn.addEventListener('click', (e) => {
       })
     );
 });
+
+btnClose.addEventListener("click", () => {
+  document.querySelector(".upmodal").removeAttribute("show");
+});
+
+const renderDetails = (data) => {
+  const title = data.title;
+  const authors = data.author;
+  const img = data.urlToImage;
+  const description = data.description;
+  const publisher = ``;
+  document.querySelector(".modal img").src = img;
+  document.querySelector(".modal-title").innerText = title;
+  document.querySelector(".modal-author").innerText = authors;
+  document.querySelector(".modal-description span").innerHTML = description;
+  document.querySelector(".modal img").innerText = img;
+  document.querySelector(".modal-date span").innerText = publisher;
+  document.querySelector(".upmodal").setAttribute("show", "");
+};
