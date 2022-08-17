@@ -42,7 +42,18 @@ function displayChannel(channel) {
   channelItemDiv.className = "channel-item";
 
   channelItemDiv.addEventListener("click", (e) => {
-    // channelItems.forEach((item) => item.classList.remove("active"));
+    fetch(`/news/?search=q&sources=${channel.id}&language=en`)
+      .then((response) =>
+        response.json().then((data) => {
+          newsSection.innerHTML = '';
+          data["articles"].forEach((article) => {
+            displayNews(article);
+          });
+        })
+      );
+
+
+
     e.target.classList.add("active");
   });
 
@@ -68,7 +79,7 @@ function displayNews(newsObj) {
   newsItemDiv.className = "news-item";
 
   newsItemDiv.addEventListener("click", (e) => {
-    window.open(newsObj.url, "_blank");
+    renderDetails(newsObj)
   });
 
   const newsImageDiv = document.createElement("div");
