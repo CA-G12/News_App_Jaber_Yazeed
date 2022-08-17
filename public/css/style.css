@@ -20,7 +20,7 @@ ul {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     padding-left: 15px;
     padding-right: 15px;
     display: flex;
@@ -258,3 +258,4 @@ ul li a:hover {
 #spinner span:nth-child(5) {
     animation-delay: 0.8s;
 }
+
