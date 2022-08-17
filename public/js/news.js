@@ -3,23 +3,30 @@ const newsSection = document.querySelector(".news-items");
 
 const channelItems = document.querySelectorAll(".channel-item");
 const newsItems = document.querySelectorAll(".news-item");
+const searchInput = document.querySelector("#search");
 
-fetch("/sources")
-  .then((response) => response.json())
-  .then((data) => {
-    data["sources"].slice(0, 7).forEach((channel) => {
-      displayChannel(channel);
-    });
-  })
-  .catch((err) => console.log(err));
+const activeChannel = {};
 
-fetch("/news/?search=q&sources=al-jazeera-english&language=en").then((response) =>
-  response.json().then((data) => {
-    data["articles"].forEach((article) => {
-      displayNews(article);
-    });
-  })
-);
+function getSources() {
+  fetch("/sources")
+    .then((response) => response.json())
+    .then((data) => {
+      data["sources"].slice(0, 7).forEach((channel) => {
+        displayChannel(channel);
+      });
+    })
+    .catch((err) => console.log(err));
+}
+
+function getNews(channel, search) {
+  fetch(`/news/?search=${search}&sources=${channel}&language=en`).then((response) =>
+    response.json().then((data) => {
+      data["articles"].forEach((article) => {
+        displayNews(article);
+      });
+    })
+  );
+}
 
 function getChannelImage(id) {
   if (id == "abc-news") {
@@ -42,8 +49,9 @@ function displayChannel(channel) {
   channelItemDiv.className = "channel-item";
 
   channelItemDiv.addEventListener("click", (e) => {
-    // channelItems.forEach((item) => item.classList.remove("active"));
-    e.target.classList.add("active");
+    document.querySelectorAll(".channel-item").forEach((item) => item.classList.remove("active"));
+    channelItemDiv.classList.add("active");
+    activeChannel = channel;
   });
 
   channelItemDiv.addEventListener("dblclick", (e) => {
@@ -67,7 +75,7 @@ function displayNews(newsObj) {
   newsItemDiv.className = "news-item";
 
   newsItemDiv.addEventListener("click", (e) => {
-    window.open(newsObj.url, "_blank");
+    renderDetails(newsObj);
   });
 
   const newsImageDiv = document.createElement("div");
@@ -106,3 +114,25 @@ function displayNews(newsObj) {
 
   newsSection.appendChild(newsItemDiv);
 }
+
+getSources();
+getNews(activeChannel, searchInput.value);
+
+btnClose.addEventListener("click", () => {
+  document.querySelector(".upmodal").removeAttribute("show");
+});
+
+const renderDetails = (data) => {
+  const title = data.title;
+  const authors = data.author;
+  const img = data.urlToImage;
+  const description = data.description;
+  const publisher = ``;
+  document.querySelector(".modal img").src = img;
+  document.querySelector(".modal-title").innerText = title;
+  document.querySelector(".modal-author").innerText = authors;
+  document.querySelector(".modal-description span").innerHTML = description;
+  document.querySelector(".modal img").innerText = img;
+  document.querySelector(".modal-date span").innerText = publisher;
+  document.querySelector(".upmodal").setAttribute("show", "");
+};
