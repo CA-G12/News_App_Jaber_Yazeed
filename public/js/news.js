@@ -3,30 +3,23 @@ const newsSection = document.querySelector(".news-items");
 
 const channelItems = document.querySelectorAll(".channel-item");
 const newsItems = document.querySelectorAll(".news-item");
-const searchInput = document.querySelector("#search");
 
-const activeChannel = {};
+fetch("/sources")
+  .then((response) => response.json())
+  .then((data) => {
+    data["sources"].slice(0, 7).forEach((channel) => {
+      displayChannel(channel);
+    });
+  })
+  .catch((err) => console.log(err));
 
-function getSources() {
-  fetch("/sources")
-    .then((response) => response.json())
-    .then((data) => {
-      data["sources"].slice(0, 7).forEach((channel) => {
-        displayChannel(channel);
-      });
-    })
-    .catch((err) => console.log(err));
-}
-
-function getNews(channel, search) {
-  fetch(`/news/?search=${search}&sources=${channel}&language=en`).then((response) =>
-    response.json().then((data) => {
-      data["articles"].forEach((article) => {
-        displayNews(article);
-      });
-    })
-  );
-}
+fetch("/news/?search=q&sources=al-jazeera-english&language=en").then((response) =>
+  response.json().then((data) => {
+    data["articles"].forEach((article) => {
+      displayNews(article);
+    });
+  })
+);
 
 function getChannelImage(id) {
   if (id == "abc-news") {
@@ -49,9 +42,8 @@ function displayChannel(channel) {
   channelItemDiv.className = "channel-item";
 
   channelItemDiv.addEventListener("click", (e) => {
-    document.querySelectorAll(".channel-item").forEach((item) => item.classList.remove("active"));
-    channelItemDiv.classList.add("active");
-    activeChannel = channel;
+    // channelItems.forEach((item) => item.classList.remove("active"));
+    e.target.classList.add("active");
   });
 
   channelItemDiv.addEventListener("dblclick", (e) => {
@@ -71,11 +63,12 @@ function displayChannel(channel) {
 }
 
 function displayNews(newsObj) {
+
   const newsItemDiv = document.createElement("div");
   newsItemDiv.className = "news-item";
 
   newsItemDiv.addEventListener("click", (e) => {
-    renderDetails(newsObj);
+    window.open(newsObj.url, "_blank");
   });
 
   const newsImageDiv = document.createElement("div");
@@ -115,8 +108,17 @@ function displayNews(newsObj) {
   newsSection.appendChild(newsItemDiv);
 }
 
-getSources();
-getNews(activeChannel, searchInput.value);
+searchBtn.addEventListener('click', (e) => {
+  fetch(`/news/?search=${search.value}&sources=al-jazeera-english&language=en`)
+    .then((response) =>
+      response.json().then((data) => {
+        newsSection.innerHTML = '';
+        data["articles"].forEach((article) => {
+          displayNews(article);
+        });
+      })
+    );
+});
 
 btnClose.addEventListener("click", () => {
   document.querySelector(".upmodal").removeAttribute("show");
