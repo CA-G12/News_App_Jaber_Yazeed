@@ -3,7 +3,9 @@ const path = require('path');
 const fetch = require('node-fetch');
 const app = express();
 require('dotenv').config();
-const router = require('./router')
+const router = require('./router');
+const newsRouter = require('./controllers/news');
+const indexRouter = require('./controllers/index');
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.json());
@@ -11,6 +13,7 @@ app.use(express.urlencoded());
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+app.use(newsRouter);
 app.use(indexRouter);
 
 app.get('/', (req, res) => {

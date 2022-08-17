@@ -7,14 +7,14 @@ require('dotenv').config();
 
 router.get('/sources', (req, res, next) => {
     console.log(`https://newsapi.org/v2/top-headlines/sources?apiKey=${process.env.API_KEY}`);
-    fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${process.env.API_KEY}`, {method: 'get'})
+    fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${process.env.API_KEY}`)
     .then((response) => response.json().then(data => res.send(data)))
     .catch((err) => next(err));
 });
 
 router.post('/search/', (req, res, next) => {
    const {search='', source='', language=''} = req.body;
-    fetch(`https://newsapi.org/v2/top-headlines?q=${search}&sources=${source}&language=${language}&apiKey=${process.env.API_KEY}`, {method: 'get'})
+    fetch(`https://newsapi.org/v2/top-headlines?q=${search}&sources=${source}&language=${language}&apiKey=${process.env.API_KEY}`)
     .then((response) => response.json().then(data => res.send(data)))
     .catch((err) => next(err));
 });
