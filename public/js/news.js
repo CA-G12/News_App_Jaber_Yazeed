@@ -42,7 +42,7 @@ function displayChannel(channel) {
   channelItemDiv.className = "channel-item";
 
   channelItemDiv.addEventListener("click", (e) => {
-    fetch(`/news/?search=q&sources=${channel.id}&language=en`)
+    fetch(`/news/?search=&sources=${channel.id}&language=en`)
       .then((response) =>
         response.json().then((data) => {
           newsSection.innerHTML = '';

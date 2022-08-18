@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/popUp.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -20,7 +25,7 @@
           <i class="fa fa-globe" aria-hidden="true"></i>
         </div>
         <ul>
-          <li>
+          <li activeLink>
             <a href="#"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
           </li>
           <li>
@@ -141,62 +146,30 @@
             </div> -->
           </div>
         </section>
-        ./today-news -->
-        <section class="feature-news">
-          <h2>Featured News</h2>
-          <div class="feature-items">
-            <div class="feature-item">
-              <img src="images/news-image.jpg" />
-              <h3 class="title">Hate speech vs free speach</h3>
-              <span class="category">CNN</span>
-            </div>
-            <div class="feature-item">
-              <img src="images/news-image.jpg" />
-              <h3 class="title">Hate speech vs free speach</h3>
-              <span class="category">CNN</span>
-            </div>
-            <div class="feature-item">
-              <img src="images/news-image.jpg" />
-              <h3 class="title">Hate speech vs free speach</h3>
-              <span class="category">CNN</span>
-            </div>
-          </div>
-          <!-- ./feature-items -->
-        </section>
-        <!-- ./feature-news
-        </section>
-        <!-- ./main-sectin -->
+      </section>
+    </div>
+  </main>
+  <!-- Globals Structures  -->
+
+  <!-- Spinner Layout  -->
+  <div id="spinner"><span></span><span></span><span></span><span></span><span></span></div>
+
+  <!-- Modal  -->
+  <section class="upmodal">
+    <div class="modal">
+      <button id="btnClose"><i style="color: white" class="fa-solid fa-xmark"></i></button>
+      <img class="modal-img" src="./public/images/notFound.webp" alt="" />
+      <div class="modal-content">
+        <h1 class="modal-title">Book Title</h1>
+        <h3 class="modal-author">Book Author</h3>
+        <p class="modal-description"><b>Description:</b> <span></span></p>
+        <div class="modal-date"><b>Date:</b> <span></span></div>
       </div>
-      <!-- ./container -->
-    </main>
-      <!-- Globals Structures  -->
+    </div>
+  </section>
 
-    <!-- Spinner Layout  -->
-    <div id="spinner"><span></span><span></span><span></span><span></span><span></span></div>
-
-    <!-- Modal  -->
-    <section class="upmodal">
-      <div class="modal">
-        <button id="btnClose"><i style="color: white" class="fa-solid fa-xmark"></i></button>
-        <img class="modal-img" src="./public/images/notFound.webp" alt="" />
-        <div class="modal-content">
-          <h1 class="modal-title">Book Title</h1>
-          <h3 class="modal-author">Book Author</h3>
-          <p class="modal-description"><b>Description:</b> <span></span></p>
-          <div class="modal-date"><b>Date:</b> <span></span></div>
-        </div>
-      </div>
-    </section>
-
-    
   <script src="./js/news.js"></script>
   <script src="./js/script.js"></script>
 </body>
 
-      /*Paste Your Code*/
-
-    <script src="./js/news.js"></script>
-    <script src="./js/script.js"></script>
-  </body>
 </html>
-
