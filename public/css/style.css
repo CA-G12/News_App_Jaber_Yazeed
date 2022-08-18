@@ -14,7 +14,9 @@
     --secondary-body-color: #eff3ff;
 }
 
-body {}
+body {
+    font-family: 'Cairo', sans-serif;
+}
 
 ul {
     list-style: none;
@@ -98,15 +100,17 @@ ul li a i {
     margin-right: 10px;
 }
 
-ul li a:hover {
+ul li a:hover , [activeLink]{
     background-color: #c8c3e3;
     color: #573ee4
 }
-.search{
+
+.search {
     padding: 10px;
     display: flex;
     width: 100%;
 }
+
 .image img {
     width: 100%;
     max-width: 50px;
@@ -176,6 +180,9 @@ ul li a:hover {
 .news-item .image img {
     min-width: 100%;
     height: 100%;
+}
+.news-item h3{
+    margin-bottom: 30px;
 }
 
 .news-item .details .title {
